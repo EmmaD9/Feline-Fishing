@@ -6,7 +6,7 @@ public enum Region
 
 }
 
-public class Fish
+public class FishClass
 {
     // Fields
     private string name;
@@ -34,7 +34,7 @@ public class Fish
     /// <param name="maxLength">Maximum possible length</param>
     /// <param name="sellPrice"></param>
     /// <param name="fishSprite"></param>
-    public Fish(string name, float minLength, float maxLength, Sprite fishSprite, float sellPricePerLB)
+    public FishClass(string name, float minLength, float maxLength, Sprite fishSprite, float sellPricePerLB)
     {
         this.name = name;
         length = Random.Range(minLength, maxLength);
