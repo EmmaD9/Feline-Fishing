@@ -4,10 +4,8 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
 
-public class InventoryManager : MonoBehaviour
+public class InventoryUIManager : MonoBehaviour
 {
-    private InventoryManager Instance;
-
     // Update from list of gameobjects to actual classes when made
 
     // Lists of items to be in inventory
@@ -48,20 +46,6 @@ public class InventoryManager : MonoBehaviour
     private List<Button> rodButtons =  new List<Button> ();
     private List<Button> lureButtons = new List<Button>();
 
-
-    private void Awake()
-    {
-        if(Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else if (Instance != this)
-        {
-            Destroy(gameObject);
-        }
-    }
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -88,11 +72,13 @@ public class InventoryManager : MonoBehaviour
     public void SetActiveRod(GameObject rod)
     {
         currentRod = rod;
+        Debug.Log("Set new rod");
     }
 
     public void SetActiveLure(GameObject lure)
     {
         currentLure = lure;
+        Debug.Log("Set new lure");
     }
 
     public void NavLeftInventory()
@@ -256,11 +242,15 @@ public class InventoryManager : MonoBehaviour
 
         for (int i = 0; i < rodButtons.Count; i++)
         {
+            int currentIndex = i;
             rodButtons[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Rod: " + (i + 1);
+            rodButtons[i].onClick.AddListener(()=>SetActiveRod(rods[currentIndex]));
         }
         for (int i = 0; i < lureButtons.Count; i++)
         {
+            int currentIndex = i;
             lureButtons[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Lure: " + (i + 1);
+            lureButtons[i].onClick.AddListener(() => SetActiveLure(lures[currentIndex]));
         }
     }
 }
