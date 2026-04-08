@@ -9,16 +9,10 @@ public class InventoryUIManager : MonoBehaviour
     // Update from list of gameobjects to actual classes when made
 
     // Lists of items to be in inventory
-    [SerializeField]
-    private List<GameObject> lures = new List<GameObject>();
-    [SerializeField]
-    private List<GameObject> rods = new List<GameObject>();
+    private List<LureScriptableObject> lures = new List<LureScriptableObject>();
+    private List<RodScriptableObject> rods = new List<RodScriptableObject>();
     private List<FishClass> fishCaught = new List<FishClass>();
-    private float money;
 
-    // Selected lure and rod
-    private GameObject currentLure;
-    private GameObject currentRod;
 
     // Panel displays for lures and rod + prefab to make panels
     [SerializeField]
@@ -49,8 +43,11 @@ public class InventoryUIManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+
+        rods = Inventory.Instance.Rods;
+        lures = Inventory.Instance.Lures;
+
         // Set current money
-        money = 0;
         SetUpInventoryUI();
     }
 
@@ -58,27 +55,6 @@ public class InventoryUIManager : MonoBehaviour
     void Update()
     {
         
-    }
-
-    public void SellFish()
-    {
-        foreach(FishClass fish in fishCaught)
-        {
-            money += fish.SellValue;
-        }
-        fishCaught.Clear();
-    }
-
-    public void SetActiveRod(GameObject rod)
-    {
-        currentRod = rod;
-        Debug.Log("Set new rod");
-    }
-
-    public void SetActiveLure(GameObject lure)
-    {
-        currentLure = lure;
-        Debug.Log("Set new lure");
     }
 
     public void NavLeftInventory()
@@ -152,11 +128,20 @@ public class InventoryUIManager : MonoBehaviour
     public void SetUpInventoryUI()
     {
         // Temp reference to rods
-        List<GameObject> tempRods = new List<GameObject>(rods);
+        List<RodScriptableObject> tempRods = new List<RodScriptableObject>(rods);
 
+        int numRodPanels = 0;
         // Calculate # of panels needed.
-        int numRodPanels = rods.Count / 8 + 1;
-        rodDisplays = new List<GameObject>();
+        if (rods.Count % 8 == 0)
+        {
+            numRodPanels = rods.Count / 8;
+        }
+        else
+        {
+            numRodPanels = rods.Count / 8 + 1;
+        }
+
+            rodDisplays = new List<GameObject>();
 
         // For each rod panel
         for (int i = 0; i < numRodPanels; i++)
@@ -189,10 +174,19 @@ public class InventoryUIManager : MonoBehaviour
         }
 
         // Temp reference to lures
-        List<GameObject> tempLures = new List<GameObject>(lures);
+        List<LureScriptableObject> tempLures = new List<LureScriptableObject>(lures);
 
         // Calculate # of panels for lures
-        int numLurePanels = lures.Count / 8 + 1;
+        int numLurePanels = 0;
+        // Calculate # of panels needed.
+        if (rods.Count % 8 == 0)
+        {
+            numLurePanels = lures.Count / 8;
+        }
+        else
+        {
+            numLurePanels = lures.Count / 8 + 1;
+        }
         lureDisplays = new List<GameObject>();
 
         // For each display
@@ -242,15 +236,15 @@ public class InventoryUIManager : MonoBehaviour
 
         for (int i = 0; i < rodButtons.Count; i++)
         {
-            int currentIndex = i;
-            rodButtons[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Rod: " + (i + 1);
-            rodButtons[i].onClick.AddListener(()=>SetActiveRod(rods[currentIndex]));
+            RodScriptableObject myRod = rods[i];
+            rodButtons[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = rods[i].RodName;
+            rodButtons[i].onClick.AddListener(() => Inventory.Instance.SetActiveRod(myRod));
         }
         for (int i = 0; i < lureButtons.Count; i++)
         {
-            int currentIndex = i;
-            lureButtons[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Lure: " + (i + 1);
-            lureButtons[i].onClick.AddListener(() => SetActiveLure(lures[currentIndex]));
+            LureScriptableObject myLure = lures[i];
+            lureButtons[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = lures[i].LureName;
+            lureButtons[i].onClick.AddListener(() => Inventory.Instance.SetActiveLure(myLure));
         }
     }
 }
