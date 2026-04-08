@@ -1,6 +1,7 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 
-public class FishingRod : MonoBehaviour
+public class FishingRod
 {
 
     private float power;
@@ -10,16 +11,11 @@ public class FishingRod : MonoBehaviour
     public float Cost { get => cost;}
     public bool IsBought { get => isBought; set => isBought = value; }
 
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public FishingRod(float power, float cost, bool isBought)
     {
-        
+        this.power = power;
+        this.cost = cost;
+        this.isBought = isBought;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

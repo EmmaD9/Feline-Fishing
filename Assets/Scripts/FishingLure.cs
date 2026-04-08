@@ -1,16 +1,20 @@
 using UnityEngine;
 
-public class FishingLure : MonoBehaviour
+public class FishingLure
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    // Fields
+    private bool isBought;
+    private FishClass fishAttracted;
 
-    // Update is called once per frame
-    void Update()
+    // Properties
+    public bool IsBought { get => isBought; set => isBought = value; }
+    public FishClass FishAttracted { get => fishAttracted;}
+
+    // Constructor
+   
+    public FishingLure(bool isBought,FishClass fishAttracted)
     {
-        
+        this.isBought = isBought;
+        this.fishAttracted = fishAttracted;
     }
 }
