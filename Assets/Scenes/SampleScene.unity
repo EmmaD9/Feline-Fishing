@@ -1050,6 +1050,7 @@ GameObject:
   - component: {fileID: 861970734}
   - component: {fileID: 861970735}
   - component: {fileID: 861970736}
+  - component: {fileID: 861970737}
   m_Layer: 0
   m_Name: Fishing Pole
   m_TagString: Untagged
@@ -1208,6 +1209,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb73644ca3a208147b59f7c3acf3366b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FollowMouse2D
+--- !u!114 &861970737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 861970731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c4e6cd99c13a144b831adb9195a0425, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FishingManager
 --- !u!1 &905766072
 GameObject:
   m_ObjectHideFlags: 0
@@ -1826,61 +1839,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cda9fa59dd1bdf449828fcbc82ccac94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventoryManager
-  lureBtnBehavior:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 174977208}
-        m_TargetAssemblyTypeName: Inventory, Assembly-CSharp
-        m_MethodName: SetActiveLure
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  rodBtnBehavior:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 174977208}
-        m_TargetAssemblyTypeName: Inventory, Assembly-CSharp
-        m_MethodName: SetActiveRod
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  buttonSetup:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1183941874}
-        m_TargetAssemblyTypeName: InventoryUIManager, Assembly-CSharp
-        m_MethodName: SetUpButtonBehaviorInventory
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   itemSelectDisplay: {fileID: 7652644266571179816, guid: 40b9072fb222ae646b3c45cf7e37af84, type: 3}
   itemButtonPrefab: {fileID: 8968407604175147116, guid: bfdc8009d77880246a3e8379a1856e5a, type: 3}
   theCanvas: {fileID: 986420583}
-  leftNavButton: {fileID: 992044314}
-  rightNavButton: {fileID: 1975282968}
-  rodListButton: {fileID: 1069019289}
-  lureListButton: {fileID: 1269498249}
   moneyText: {fileID: 1371965062}
   panelPosition: {x: 477, y: -40, z: 0}
   btnsPerPanel: 8
+  isMarket: 0
 --- !u!4 &1183941875
 Transform:
   m_ObjectHideFlags: 0
