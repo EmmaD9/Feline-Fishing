@@ -21,6 +21,9 @@ public class Inventory : MonoBehaviour
 
     public List<LureScriptableObject> Lures { get => lures; }
     public List<RodScriptableObject> Rods { get => rods; }
+    public Dictionary<LureScriptableObject, bool> LuresBought { get => luresBought; set => luresBought = value; }
+    public float Money { get => money; set => money = value; }
+    public Dictionary<RodScriptableObject, bool> RodsBought { get => rodsBought; set => rodsBought = value; }
 
     // Selected lure and rod
     private LureScriptableObject currentLure;
@@ -31,6 +34,7 @@ public class Inventory : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            DontDestroyOnLoad(this);
         }
         else if (Instance != this)
         {

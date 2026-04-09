@@ -1,12 +1,19 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class InventoryUIManager : MonoBehaviour
 {
-    // Update from list of gameobjects to actual classes when made
+    [SerializeField]
+    private UnityEvent<LureScriptableObject> lureBtnBehavior;
+    [SerializeField]
+    private UnityEvent<RodScriptableObject> rodBtnBehavior;
+    [SerializeField]
+    private UnityEvent buttonSetup;
 
     // Lists of items to be in inventory
     private List<LureScriptableObject> lures = new List<LureScriptableObject>();
@@ -32,13 +39,18 @@ public class InventoryUIManager : MonoBehaviour
     [SerializeField]
     private Canvas theCanvas;
 
-    // Nav buttons for inventory
-    [SerializeField]
-    private Button leftNavButton, rightNavButton, rodListButton, lureListButton;
-
     // References to all buttons made.
     private List<Button> rodButtons =  new List<Button> ();
     private List<Button> lureButtons = new List<Button>();
+
+    [SerializeField]
+    private TextMeshProUGUI moneyText;
+
+    [SerializeField]
+    private Vector3 panelPosition;
+
+    [SerializeField]
+    private int btnsPerPanel;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -46,15 +58,20 @@ public class InventoryUIManager : MonoBehaviour
 
         rods = Inventory.Instance.Rods;
         lures = Inventory.Instance.Lures;
-
         // Set current money
         SetUpInventoryUI();
+        buttonSetup.Invoke();
+    }
+
+    public void OnEnable()
+    {
+        buttonSetup.Invoke();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        moneyText.text = "Money: $" + Inventory.Instance.Money;
     }
 
     public void NavLeftInventory()
@@ -132,13 +149,13 @@ public class InventoryUIManager : MonoBehaviour
 
         int numRodPanels = 0;
         // Calculate # of panels needed.
-        if (rods.Count % 8 == 0)
+        if (rods.Count % btnsPerPanel == 0)
         {
-            numRodPanels = rods.Count / 8;
+            numRodPanels = rods.Count / btnsPerPanel;
         }
         else
         {
-            numRodPanels = rods.Count / 8 + 1;
+            numRodPanels = rods.Count / btnsPerPanel + 1;
         }
 
             rodDisplays = new List<GameObject>();
@@ -150,10 +167,10 @@ public class InventoryUIManager : MonoBehaviour
             GameObject rodD = Instantiate(itemSelectDisplay);
             rodD.transform.parent = theCanvas.transform;
             rodDisplays.Add(rodD);
-            rodD.transform.localPosition = new Vector3(477, -40, 0);
+            rodD.transform.localPosition = panelPosition;
 
             // Add buttons
-            for (int j = 0; j < 8; j++)
+            for (int j = 0; j < btnsPerPanel; j++)
             {
                 if (j < tempRods.Count)
                 {
@@ -164,7 +181,7 @@ public class InventoryUIManager : MonoBehaviour
             }
 
             // Remove buttons from temp
-            for (int j = 0; j < 8; j++)
+            for (int j = 0; j < btnsPerPanel; j++)
             {
                 if (j < tempRods.Count)
                 {
@@ -179,13 +196,13 @@ public class InventoryUIManager : MonoBehaviour
         // Calculate # of panels for lures
         int numLurePanels = 0;
         // Calculate # of panels needed.
-        if (rods.Count % 8 == 0)
+        if (lures.Count % btnsPerPanel == 0)
         {
-            numLurePanels = lures.Count / 8;
+            numLurePanels = lures.Count / btnsPerPanel;
         }
         else
         {
-            numLurePanels = lures.Count / 8 + 1;
+            numLurePanels = lures.Count / btnsPerPanel + 1;
         }
         lureDisplays = new List<GameObject>();
 
@@ -196,13 +213,13 @@ public class InventoryUIManager : MonoBehaviour
             GameObject lureD = Instantiate(itemSelectDisplay);
             lureD.transform.parent = theCanvas.transform;
             lureDisplays.Add(lureD);
-            lureD.transform.localPosition = new Vector3(477, -40, 0);
+            lureD.transform.localPosition = panelPosition;
 
 
             // Set buttons up to max capacity
-            for (int j = 0; j < 8; j++)
+            for (int j = 0; j < btnsPerPanel; j++)
             {
-                if (j < tempLures.Count)
+                if (j < tempLures.Count - 1)
                 {
                     GameObject lureButton = Instantiate(itemButtonPrefab);
                     lureButton.transform.parent = lureD.transform;
@@ -211,7 +228,7 @@ public class InventoryUIManager : MonoBehaviour
             }
 
             // Remove temp references.
-            for (int j = 0; j < 8; j++)
+            for (int j = 0; j < btnsPerPanel; j++)
             {
                 if (j < tempLures.Count)
                 {
@@ -233,18 +250,76 @@ public class InventoryUIManager : MonoBehaviour
         lastDisplay = rodDisplays[0];
         lastRodDisplay = rodDisplays[0];
         lastLureDisplay = lureDisplays[0];
+    }
 
+    public void SetUpButtonBehaviorMarket()
+    {
         for (int i = 0; i < rodButtons.Count; i++)
         {
             RodScriptableObject myRod = rods[i];
-            rodButtons[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = rods[i].RodName;
-            rodButtons[i].onClick.AddListener(() => Inventory.Instance.SetActiveRod(myRod));
+            if (Inventory.Instance.RodsBought[myRod] == false)
+            {
+                rodButtons[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = myRod.RodName;
+                rodButtons[i].onClick.AddListener(() => rodBtnBehavior.Invoke(myRod));
+            }
+            else
+            {
+                rodButtons[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Sold Out";
+            }
+            
         }
         for (int i = 0; i < lureButtons.Count; i++)
         {
             LureScriptableObject myLure = lures[i];
-            lureButtons[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = lures[i].LureName;
-            lureButtons[i].onClick.AddListener(() => Inventory.Instance.SetActiveLure(myLure));
+            if (Inventory.Instance.LuresBought[myLure] == false)
+            {
+                lureButtons[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = myLure.LureName;
+                lureButtons[i].onClick.AddListener(() => lureBtnBehavior.Invoke(myLure));
+            }
+            else
+            {
+                lureButtons[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Sold Out";
+            }
+            
         }
+    }
+    public void SetUpButtonBehaviorInventory()
+    {
+        for (int i = 0; i < rodButtons.Count; i++)
+        {
+            RodScriptableObject myRod = Inventory.Instance.Rods[i];
+            if (Inventory.Instance.RodsBought[myRod] == true)
+            {
+                rodButtons[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = myRod.RodName;
+                rodButtons[i].onClick.AddListener(() => rodBtnBehavior.Invoke(myRod));
+            }
+            else
+            {
+                rodButtons[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Not Owned";
+            }
+            
+        }
+        for (int i = 0; i < lureButtons.Count; i++)
+        {
+            LureScriptableObject myLure = Inventory.Instance.Lures[i];
+            if(Inventory.Instance.LuresBought[myLure] == true)
+            {
+                lureButtons[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = myLure.LureName;
+                lureButtons[i].onClick.AddListener(() => lureBtnBehavior.Invoke(myLure));
+            }
+            else
+            {
+                lureButtons[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Not Owned";
+            }
+        }
+    }
+
+    public void ReturnToOcean()
+    {
+        SceneManager.LoadScene("SampleScene");
+    }
+    public void GoToMarket()
+    {
+        SceneManager.LoadScene("Market");
     }
 }
