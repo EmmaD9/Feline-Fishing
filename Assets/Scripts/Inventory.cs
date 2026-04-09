@@ -77,13 +77,19 @@ public class Inventory : MonoBehaviour
 
     public void SetActiveRod(RodScriptableObject rod)
     {
-        currentRod = rod;
-        Debug.Log("Current Rod: " + rod.RodName);
+        if (rodsBought[rod])
+        {
+            currentRod = rod;
+            Debug.Log("Current Rod: " + rod.RodName);
+        }
     }
 
     public void SetActiveLure(LureScriptableObject lure)
     {
-        currentLure = lure;
-        Debug.Log("Current Lure: " + lure.LureName);
+        if (luresBought[lure])
+        {
+            currentLure = lure;
+            Debug.Log("Current Lure: " + lure.LureName);
+        }
     }
 }

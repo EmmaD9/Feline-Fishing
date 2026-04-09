@@ -6,6 +6,20 @@ using static UnityEngine.Rendering.DebugUI.Table;
 
 public class MarketManager : MonoBehaviour
 {
+    public static MarketManager Instance;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(this);
+        }
+        else if (Instance != this)
+        {
+            Destroy(gameObject);
+        }
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

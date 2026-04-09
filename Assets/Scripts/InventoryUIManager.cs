@@ -8,12 +8,10 @@ using UnityEngine.UI;
 
 public class InventoryUIManager : MonoBehaviour
 {
-    [SerializeField]
-    private UnityEvent<LureScriptableObject> lureBtnBehavior;
-    [SerializeField]
-    private UnityEvent<RodScriptableObject> rodBtnBehavior;
-    [SerializeField]
-    private UnityEvent buttonSetup;
+
+    public delegate void LureBehavior();
+    public LureBehavior lureBehavior;
+    public delegate void RodBehavior();
 
     // Lists of items to be in inventory
     private List<LureScriptableObject> lures = new List<LureScriptableObject>();
@@ -40,7 +38,7 @@ public class InventoryUIManager : MonoBehaviour
     private Canvas theCanvas;
 
     // References to all buttons made.
-    private List<Button> rodButtons =  new List<Button> ();
+    private List<Button> rodButtons =  new List<Button>();
     private List<Button> lureButtons = new List<Button>();
 
     [SerializeField]
@@ -52,6 +50,9 @@ public class InventoryUIManager : MonoBehaviour
     [SerializeField]
     private int btnsPerPanel;
 
+    [SerializeField]
+    private bool isMarket;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -60,12 +61,26 @@ public class InventoryUIManager : MonoBehaviour
         lures = Inventory.Instance.Lures;
         // Set current money
         SetUpInventoryUI();
-        buttonSetup.Invoke();
+        if (isMarket)
+        {
+            SetUpButtonBehaviorMarket();
+        }
+        else
+        {
+            SetUpButtonBehaviorInventory();
+        }
     }
 
     public void OnEnable()
     {
-        buttonSetup.Invoke();
+        if (isMarket)
+        {
+            SetUpButtonBehaviorMarket();
+        }
+        else
+        {
+            SetUpButtonBehaviorInventory();
+        }
     }
 
     // Update is called once per frame
@@ -260,7 +275,7 @@ public class InventoryUIManager : MonoBehaviour
             if (Inventory.Instance.RodsBought[myRod] == false)
             {
                 rodButtons[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = myRod.RodName;
-                rodButtons[i].onClick.AddListener(() => rodBtnBehavior.Invoke(myRod));
+                rodButtons[i].onClick.AddListener(() => MarketManager.Instance.BuyRod(myRod));
             }
             else
             {
@@ -274,7 +289,7 @@ public class InventoryUIManager : MonoBehaviour
             if (Inventory.Instance.LuresBought[myLure] == false)
             {
                 lureButtons[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = myLure.LureName;
-                lureButtons[i].onClick.AddListener(() => lureBtnBehavior.Invoke(myLure));
+                lureButtons[i].onClick.AddListener(() => MarketManager.Instance.BuyLure(myLure));
             }
             else
             {
@@ -291,13 +306,13 @@ public class InventoryUIManager : MonoBehaviour
             if (Inventory.Instance.RodsBought[myRod] == true)
             {
                 rodButtons[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = myRod.RodName;
-                rodButtons[i].onClick.AddListener(() => rodBtnBehavior.Invoke(myRod));
             }
             else
             {
                 rodButtons[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Not Owned";
             }
-            
+            rodButtons[i].onClick.AddListener(()=>Inventory.Instance.SetActiveRod(myRod));
+
         }
         for (int i = 0; i < lureButtons.Count; i++)
         {
@@ -305,12 +320,12 @@ public class InventoryUIManager : MonoBehaviour
             if(Inventory.Instance.LuresBought[myLure] == true)
             {
                 lureButtons[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = myLure.LureName;
-                lureButtons[i].onClick.AddListener(() => lureBtnBehavior.Invoke(myLure));
             }
             else
             {
                 lureButtons[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Not Owned";
             }
+            lureButtons[i].onClick.AddListener(() => Inventory.Instance.SetActiveLure(myLure));
         }
     }
 

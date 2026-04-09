@@ -2432,57 +2432,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cda9fa59dd1bdf449828fcbc82ccac94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventoryUIManager
-  lureBtnBehavior:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2099931158}
-        m_TargetAssemblyTypeName: MarketManager, Assembly-CSharp
-        m_MethodName: BuyLure
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  rodBtnBehavior:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2099931158}
-        m_TargetAssemblyTypeName: MarketManager, Assembly-CSharp
-        m_MethodName: BuyRod
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  buttonSetup:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2099931156}
-        m_TargetAssemblyTypeName: InventoryUIManager, Assembly-CSharp
-        m_MethodName: SetUpButtonBehaviorMarket
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   itemSelectDisplay: {fileID: 6228106730648113572, guid: 084c900dd0f3b50458cc944633117d7c, type: 3}
   itemButtonPrefab: {fileID: 8968407604175147116, guid: bfdc8009d77880246a3e8379a1856e5a, type: 3}
   theCanvas: {fileID: 643269250}
   moneyText: {fileID: 2091812864}
   panelPosition: {x: -285, y: -48, z: 0}
   btnsPerPanel: 12
+  isMarket: 1
 --- !u!4 &2099931157
 Transform:
   m_ObjectHideFlags: 0
