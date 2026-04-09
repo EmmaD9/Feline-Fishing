@@ -6,19 +6,22 @@ public class FishingManager : MonoBehaviour
 {
 
     private float timer;
+    private bool fishing;
+    public GameObject fishingBar;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        fishing = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Mouse.current.rightButton.wasPressedThisFrame)
+        if (Mouse.current.rightButton.wasPressedThisFrame && !fishing)
         {
             StartFishing();
+            fishing = true;
         }
     }
 

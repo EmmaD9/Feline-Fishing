@@ -1221,6 +1221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c4e6cd99c13a144b831adb9195a0425, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FishingManager
+  fishingBar: {fileID: 0}
 --- !u!1 &905766072
 GameObject:
   m_ObjectHideFlags: 0
