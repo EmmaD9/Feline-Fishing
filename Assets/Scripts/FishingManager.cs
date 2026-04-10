@@ -2,7 +2,6 @@ using System.Collections;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using TMPro;
 
 public class FishingManager : MonoBehaviour
 {
@@ -23,8 +22,6 @@ public class FishingManager : MonoBehaviour
 
     public static int fishHealth;
 
-    public TextMeshProUGUI directions;
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -35,13 +32,13 @@ public class FishingManager : MonoBehaviour
         playerArea.transform.position = new Vector3(-4.22f, -0.31f, 0);
         barMovement = 0.005f;
         playerMovement = 0.01f;
-        fishHealth = 800;
-        directions.text = "Right Click to Cast";
+        fishHealth = 1000;
     }
 
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log(fishHealth);
         if (Mouse.current.rightButton.wasPressedThisFrame && !fishing)
         {
             StartFishing();
@@ -49,10 +46,6 @@ public class FishingManager : MonoBehaviour
         }
         if (hooked)
         {
-            if(fishHealth <= 0)
-            {
-                StartCoroutine(FishCaught());
-            }
             if(currentTargetArea.transform.position.y >=2.6 || currentTargetArea.transform.position.y <=  -3.2)
             {
                 barMovement *= -1;
@@ -80,8 +73,9 @@ public class FishingManager : MonoBehaviour
 
     public void StartFishing()
     {
-        directions.text = "Wait for it...";
+        Debug.Log("Started Fishing");
         timer = Random.Range(2.0f, 10.0f);
+        Debug.Log("Time: " + timer);
         StartCoroutine(Timer(timer));
     }
 
@@ -93,18 +87,5 @@ public class FishingManager : MonoBehaviour
         currentTargetArea = Instantiate(targetArea);
         currentPlayerArea = Instantiate(playerArea);
         hooked = true;
-    }
-
-    private IEnumerator FishCaught()
-    {
-        directions.text = "You caught one!";
-        Destroy(currentFishingBar);
-        Destroy(currentTargetArea);
-        Destroy(currentPlayerArea);
-        hooked = false;
-        fishHealth = 800;
-        yield return new WaitForSeconds(3.0f);
-        fishing = false;
-        directions.text = "Right Click to Cast";
     }
 }
