@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Runtime.CompilerServices;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class FishingManager : MonoBehaviour
 {
@@ -22,6 +24,9 @@ public class FishingManager : MonoBehaviour
 
     public static int fishHealth;
 
+    public TextMeshProUGUI directions;
+    public Slider fishHealthSlider;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -32,7 +37,10 @@ public class FishingManager : MonoBehaviour
         playerArea.transform.position = new Vector3(-4.22f, -0.31f, 0);
         barMovement = 0.005f;
         playerMovement = 0.01f;
-        fishHealth = 1000;
+        fishHealth = 800;
+        fishHealthSlider.value = fishHealth;
+        fishHealthSlider.gameObject.SetActive(false);
+        directions.text = "Right Click to Cast";
     }
 
     // Update is called once per frame
@@ -46,7 +54,12 @@ public class FishingManager : MonoBehaviour
         }
         if (hooked)
         {
-            if(currentTargetArea.transform.position.y >=2.6 || currentTargetArea.transform.position.y <=  -3.2)
+            fishHealthSlider.value = fishHealth;
+            if (fishHealth <= 0)
+            {
+                StartCoroutine(FishCaught());
+            }
+            if (currentTargetArea.transform.position.y >=2.6 || currentTargetArea.transform.position.y <=  -3.2)
             {
                 barMovement *= -1;
             }
@@ -73,19 +86,33 @@ public class FishingManager : MonoBehaviour
 
     public void StartFishing()
     {
-        Debug.Log("Started Fishing");
+        directions.text = "Wait for it...";
         timer = Random.Range(2.0f, 10.0f);
-        Debug.Log("Time: " + timer);
         StartCoroutine(Timer(timer));
     }
 
     private IEnumerator Timer(float time)
     {
         yield return new WaitForSeconds(time);
-        Debug.Log("Timer Finished");
+        directions.text = "Left Click to Reel";
         currentFishingBar = Instantiate(fishingBar);
         currentTargetArea = Instantiate(targetArea);
         currentPlayerArea = Instantiate(playerArea);
+        fishHealthSlider.gameObject.SetActive(true);
         hooked = true;
     }
+    private IEnumerator FishCaught()
+    {
+        directions.text = "You caught one!";
+        Destroy(currentFishingBar);
+        Destroy(currentTargetArea);
+        Destroy(currentPlayerArea);
+        fishHealthSlider.gameObject.SetActive(false);
+        hooked = false;
+        fishHealth = 800;
+        yield return new WaitForSeconds(3.0f);
+        fishing = false;
+        directions.text = "Right Click to Cast";
+    }
 }
+
