@@ -24,6 +24,8 @@ public class Inventory : MonoBehaviour
     public Dictionary<LureScriptableObject, bool> LuresBought { get => luresBought; set => luresBought = value; }
     public float Money { get => money; set => money = value; }
     public Dictionary<RodScriptableObject, bool> RodsBought { get => rodsBought; set => rodsBought = value; }
+    public LureScriptableObject CurrentLure { get => currentLure; set => currentLure = value; }
+    public RodScriptableObject CurrentRod { get => currentRod; set => currentRod = value; }
 
     // Selected lure and rod
     private LureScriptableObject currentLure;
@@ -57,7 +59,8 @@ public class Inventory : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        currentLure = lures[0];
+        currentRod = rods[0];
     }
 
     // Update is called once per frame
@@ -80,7 +83,7 @@ public class Inventory : MonoBehaviour
         if (rodsBought[rod])
         {
             currentRod = rod;
-            Debug.Log("Current Rod: " + rod.RodName);
+            Debug.Log("Current Rod: " + currentRod.RodName);
         }
     }
 
@@ -89,7 +92,7 @@ public class Inventory : MonoBehaviour
         if (luresBought[lure])
         {
             currentLure = lure;
-            Debug.Log("Current Lure: " + lure.LureName);
+            Debug.Log("Current Lure: " + currentLure.LureName);
         }
     }
 }
