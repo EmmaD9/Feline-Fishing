@@ -20,6 +20,8 @@ public class FishingManager : MonoBehaviour
     private float barMovement;
     private float playerMovement;
 
+    public static int fishHealth;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -30,11 +32,13 @@ public class FishingManager : MonoBehaviour
         playerArea.transform.position = new Vector3(-4.22f, -0.31f, 0);
         barMovement = 0.005f;
         playerMovement = 0.01f;
+        fishHealth = 1000;
     }
 
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log(fishHealth);
         if (Mouse.current.rightButton.wasPressedThisFrame && !fishing)
         {
             StartFishing();
@@ -50,7 +54,6 @@ public class FishingManager : MonoBehaviour
 
             if (Mouse.current.leftButton.wasPressedThisFrame)
             {
-                Debug.Log("Clicked");
                 currentPlayerArea.transform.position += new Vector3(0, playerMovement * 100, 0);
                 if(currentPlayerArea.transform.position.y >= 2.9)
                 {
