@@ -14,10 +14,4 @@ public class SceneController : MonoBehaviour
     {
         SceneManager.LoadScene("MainGame");
     }
-
-    //marketplace load in
-    public void LoadMarketplace()
-    {
-        SceneManager.LoadScene("Market");
-    }
 }

@@ -83,6 +83,10 @@ public class FishingManager : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         Debug.Log("Timer Finished");
+
+        //switch state to minigame
+        GameManager.Instance.ChangeState(GameState.Minigame);
+
         currentFishingBar = Instantiate(fishingBar);
         currentTargetArea = Instantiate(targetArea);
         currentPlayerArea = Instantiate(playerArea);
