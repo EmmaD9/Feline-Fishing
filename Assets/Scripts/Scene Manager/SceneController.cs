@@ -12,6 +12,6 @@ public class SceneController : MonoBehaviour
     // loads game loop
     public void LoadMainGame()
     {
-        SceneManager.LoadScene("MainGame");
+        SceneManager.LoadScene("SampleScene");
     }
 }
