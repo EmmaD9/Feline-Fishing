@@ -58,4 +58,9 @@ public class MarketManager : MonoBehaviour
     {
         SceneManager.LoadScene("SampleScene");
     }
+
+    public void SellFish()
+    {
+        Inventory.Instance.SellFish();
+    }
 }
