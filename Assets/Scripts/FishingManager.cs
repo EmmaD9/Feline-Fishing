@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -14,13 +15,16 @@ public class FishingManager : MonoBehaviour
     private GameObject currentFishingBar;
     private GameObject currentTargetArea;
 
+    private float barMovement;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         fishing = false;
         hooked = false;
         targetArea.transform.position = new Vector3(-4.22f, -0.08f, 0);
-        fishingBar.transform.position = new Vector3(-4.224f, -0.29f, 0);
+        fishingBar.transform.position = new Vector3(-4.22f, -0.29f, 0);
+        barMovement = 0.005f;
     }
 
     // Update is called once per frame
@@ -33,11 +37,11 @@ public class FishingManager : MonoBehaviour
         }
         if (hooked)
         {
-            Debug.Log(currentTargetArea.transform.position);
-            //Vector3 currentTarget = targetArea.transform.position;
-            //currentTarget.y += 0.001f;
-            //targetArea.transform.position = currentTarget;
-            currentTargetArea.transform.position += new Vector3(0, 0.001f, 0);
+            if(currentTargetArea.transform.position.y >=2.6 || currentTargetArea.transform.position.y <=  -3.2)
+            {
+                barMovement *= -1;
+            }
+            currentTargetArea.transform.position += new Vector3(0, barMovement, 0);
         }
     }
 
