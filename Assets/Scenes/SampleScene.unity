@@ -1223,6 +1223,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FishingManager
   fishingBar: {fileID: 2350154196498749151, guid: 23fb33f397a4ea441b11dce8d74a6988, type: 3}
   targetArea: {fileID: 6349437145864091850, guid: 706d99c8b2fcbf54081ba4a67360eb99, type: 3}
+  playerArea: {fileID: 2258328996703398648, guid: 0b24f9ac7983211428bb2de1e3da0b23, type: 3}
 --- !u!1 &905766072
 GameObject:
   m_ObjectHideFlags: 0
