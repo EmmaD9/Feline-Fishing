@@ -1,8 +1,11 @@
+using NUnit.Framework;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 using static UnityEngine.Rendering.DebugUI.Table;
+using UnityEngine.UI;
 
 public class MarketManager : MonoBehaviour
 {
@@ -13,7 +16,6 @@ public class MarketManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(this);
         }
         else if (Instance != this)
         {

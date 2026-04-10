@@ -274,6 +274,13 @@ public class InventoryUIManager : MonoBehaviour
             RodScriptableObject myRod = rods[i];
             if (Inventory.Instance.RodsBought[myRod] == false)
             {
+                GameObject price = new GameObject();
+                price.transform.parent = rodButtons[i].gameObject.transform;
+                price.transform.localPosition = new Vector3(50, -100, 0);
+                price.AddComponent<TextMeshProUGUI>();
+                TextMeshProUGUI text = price.GetComponent<TextMeshProUGUI>();
+                text.text = "Price: " + rods[i].Cost;
+                Instantiate(price);
                 rodButtons[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = myRod.RodName;
                 rodButtons[i].onClick.AddListener(() => MarketManager.Instance.BuyRod(myRod));
             }
@@ -288,6 +295,14 @@ public class InventoryUIManager : MonoBehaviour
             LureScriptableObject myLure = lures[i];
             if (Inventory.Instance.LuresBought[myLure] == false)
             {
+                GameObject price = new GameObject();
+                price.transform.parent = lureButtons[i].gameObject.transform;
+                price.transform.localPosition = new Vector3(50, -100, 0);
+                price.AddComponent<TextMeshProUGUI>();
+                TextMeshProUGUI text = price.GetComponent<TextMeshProUGUI>();
+                text.text = "Price: " + lures[i].Cost;
+                
+                Instantiate(price);
                 lureButtons[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = myLure.LureName;
                 lureButtons[i].onClick.AddListener(() => MarketManager.Instance.BuyLure(myLure));
             }
