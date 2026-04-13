@@ -1,25 +1,10 @@
 fileFormatVersion: 2
-guid: 13219c957e54e1c43a39418f5bf47395
+guid: ca8b0745a4d0a954681de79913aef301
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8116723030555978067
-    second: test-spritesheeet_0
-  - first:
-      213: 3187992442466246051
-    second: test-spritesheeet_1
-  - first:
-      213: 7213217286761373935
-    second: test-spritesheeet_2
-  - first:
-      213: 2528777141727049664
-    second: test-spritesheeet_3
-  - first:
-      213: 6017662022934729868
-    second: test-spritesheeet_4
-  - first:
-      213: 6709527258379232339
-    second: test-spritesheeet_5
+      213: -4258646693600636525
+    second: fishing pole_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -61,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -154,95 +139,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: test-spritesheeet_0
-      rect:
-        serializedVersion: 2
-        x: 23
-        y: 1051
-        width: 730
-        height: 1243
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3596580979464a070800000000000000
-      internalID: 8116723030555978067
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: test-spritesheeet_1
-      rect:
-        serializedVersion: 2
-        x: 759
-        y: 1926
-        width: 882
-        height: 359
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3ad94d75c360e3c20800000000000000
-      internalID: 3187992442466246051
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: test-spritesheeet_2
-      rect:
-        serializedVersion: 2
-        x: 816
-        y: 1526
-        width: 730
-        height: 309
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: fe06e11b7ee7a1460800000000000000
-      internalID: 7213217286761373935
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: test-spritesheeet_3
-      rect:
-        serializedVersion: 2
-        x: 1068
-        y: 1245
-        width: 307
-        height: 262
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0c7b4c09965081320800000000000000
-      internalID: 2528777141727049664
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: test-spritesheeet_4
+      name: fishing pole_0
       rect:
         serializedVersion: 2
         x: 16
@@ -257,30 +154,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c8412671ab7038350800000000000000
-      internalID: 6017662022934729868
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: test-spritesheeet_5
-      rect:
-        serializedVersion: 2
-        x: 966
-        y: 987
-        width: 474
-        height: 193
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 354ae7e2e770d1d50800000000000000
-      internalID: 6709527258379232339
+      spriteID: 391da0c356f36e4c0800000000000000
+      internalID: -4258646693600636525
       vertices: []
       indices: 
       edges: []
@@ -289,7 +164,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -299,12 +174,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      test-spritesheeet_0: 8116723030555978067
-      test-spritesheeet_1: 3187992442466246051
-      test-spritesheeet_2: 7213217286761373935
-      test-spritesheeet_3: 2528777141727049664
-      test-spritesheeet_4: 6017662022934729868
-      test-spritesheeet_5: 6709527258379232339
+      fishing pole_0: -4258646693600636525
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
