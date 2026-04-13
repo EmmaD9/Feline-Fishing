@@ -13,7 +13,6 @@ public class FishClass
     private float length;
     private float weight;
     private float health;
-    private float sellPricePerLB;
     private float sellValue;
     private Sprite fishSprite;
 
