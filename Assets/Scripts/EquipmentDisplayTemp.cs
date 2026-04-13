@@ -16,6 +16,6 @@ public class EquipmentDisplayTemp : MonoBehaviour
     void Update()
     {
         tempLureDisplay.text = "Lure: " + Inventory.Instance.CurrentLure.LureName;
-        tempRodDisplay.text = "Lure: " + Inventory.Instance.CurrentRod.RodName;
+        tempRodDisplay.text = "Rod: " + Inventory.Instance.CurrentRod.RodName;
     }
 }
