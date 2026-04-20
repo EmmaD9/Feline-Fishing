@@ -33,8 +33,7 @@ public class Inventory : MonoBehaviour
 
     [SerializeField]
     private List<FishScriptableObject> possibleFish;
-    private List<bool> recordFishCaught = new List<bool>();
-
+    private Dictionary<FishScriptableObject, FishClass> recordFish;
     public void Awake()
     {
         if (Instance == null)
@@ -67,9 +66,8 @@ public class Inventory : MonoBehaviour
         currentRod = rods[0];
         for(int i = 0; i < possibleFish.Count; i++)
         {
-            recordFishCaught.Add(false);
+            recordFish.Add(possibleFish[i], new FishClass(possibleFish[i].FishName, 0, 0, possibleFish[i].Texture, 0.0f));
         }
-
     }
 
     // Update is called once per frame

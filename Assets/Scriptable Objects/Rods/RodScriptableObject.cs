@@ -10,10 +10,10 @@ public class RodScriptableObject : ScriptableObject
     [SerializeField]
     private float cost;
     [SerializeField]
-    private Texture2D texture;
+    private Sprite texture;
 
     public string RodName { get => rodName; set => rodName = value; }
     public float Power { get => power; set => power = value; }
     public float Cost { get => cost; set => cost = value; }
-    public Texture2D Texture { get => texture; set => texture = value; }
+    public Sprite Texture { get => texture; set => texture = value; }
 }

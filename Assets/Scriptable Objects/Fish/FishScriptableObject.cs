@@ -12,7 +12,7 @@ public class FishScriptableObject : ScriptableObject
     [SerializeField]
     private float sellPricePerLB;
     [SerializeField]
-    private Texture2D texture;
+    private Sprite texture;
 
     private float sellValue;
 
@@ -21,4 +21,5 @@ public class FishScriptableObject : ScriptableObject
     public float SellPricePerLB { get => sellPricePerLB; set => sellPricePerLB = value; }
     public float LengthMin { get => lengthMin; set => lengthMin = value; }
     public float LengthMax { get => lengthMax; set => lengthMax = value; }
+    public Sprite Texture { get => texture; set => texture = value; }
 }
