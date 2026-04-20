@@ -31,6 +31,10 @@ public class Inventory : MonoBehaviour
     private LureScriptableObject currentLure;
     private RodScriptableObject currentRod;
 
+    [SerializeField]
+    private List<FishScriptableObject> possibleFish;
+    private List<bool> recordFishCaught = new List<bool>();
+
     public void Awake()
     {
         if (Instance == null)
@@ -61,6 +65,11 @@ public class Inventory : MonoBehaviour
     {
         currentLure = lures[0];
         currentRod = rods[0];
+        for(int i = 0; i < possibleFish.Count; i++)
+        {
+            recordFishCaught.Add(false);
+        }
+
     }
 
     // Update is called once per frame
