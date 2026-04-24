@@ -63,6 +63,10 @@ public class MarketManager : MonoBehaviour
 
     public void SellFish()
     {
-        Inventory.Instance.SellFish();
+        foreach (FishClass fish in Inventory.Instance.fishCaught)
+        {
+            Inventory.Instance.Money += fish.SellValue;
+        }
+        Inventory.Instance.fishCaught.Clear();
     }
 }
