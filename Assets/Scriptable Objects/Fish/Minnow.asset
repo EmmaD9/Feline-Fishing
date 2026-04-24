@@ -16,5 +16,5 @@ MonoBehaviour:
   lengthMin: 1
   lengthMax: 4
   health: 400
-  sellPricePerLB: 3
+  sellPricePerLB: 1
   texture: {fileID: -6618657629375954942, guid: edf41ac53d69a7947a199f8074f6cd84, type: 3}

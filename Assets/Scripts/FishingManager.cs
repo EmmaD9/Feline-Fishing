@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using System.Collections;
 using System.Runtime.CompilerServices;
 using TMPro;
@@ -27,6 +28,19 @@ public class FishingManager : MonoBehaviour
     public TextMeshProUGUI directions;
     public Slider fishHealthSlider;
 
+    // Fish Scriptable objects
+    public FishScriptableObject pinkFish;
+    public FishScriptableObject minnow;
+    public FishScriptableObject bluefinTuna;
+    public FishScriptableObject sockeyeSalmon;
+    public FishScriptableObject rainbowTrout;
+
+    private FishScriptableObject currentFish;
+
+    public Image fishImage;
+
+    public Inventory inventory;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -37,9 +51,8 @@ public class FishingManager : MonoBehaviour
         playerArea.transform.position = new Vector3(-4.22f, -0.31f, 0);
         barMovement = 0.005f;
         playerMovement = 0.01f;
-        fishHealth = 800;
-        fishHealthSlider.value = fishHealth;
         fishHealthSlider.gameObject.SetActive(false);
+        fishImage.gameObject.SetActive(false);
         directions.text = "Right Click to Cast";
     }
 
@@ -94,23 +107,50 @@ public class FishingManager : MonoBehaviour
     private IEnumerator Timer(float time)
     {
         yield return new WaitForSeconds(time);
+        int randomFish = Random.Range(1, 6);
+        switch (randomFish)
+        {
+            case 1:
+                currentFish = pinkFish;
+                break;
+            case 2:
+                currentFish = minnow;
+                break;
+            case 3:
+                currentFish = bluefinTuna;
+                break;
+            case 4:
+                currentFish = sockeyeSalmon;
+                break;
+            case 5:
+                currentFish = rainbowTrout;
+                break;
+        }
         directions.text = "Left Click to Reel";
         currentFishingBar = Instantiate(fishingBar);
         currentTargetArea = Instantiate(targetArea);
         currentPlayerArea = Instantiate(playerArea);
+        fishHealth = (int)currentFish.Health;
+        fishHealthSlider.value = fishHealth;
+        fishHealthSlider.maxValue = fishHealth;
         fishHealthSlider.gameObject.SetActive(true);
         hooked = true;
     }
     private IEnumerator FishCaught()
     {
-        directions.text = "You caught one!";
+        directions.text = "You caught a " + currentFish.FishName + "!";
+        inventory.fishCaught.Add(new FishClass(currentFish.FishName, currentFish.LengthMin, currentFish.LengthMax, currentFish.Texture, currentFish.SellPricePerLB));
+        Debug.Log(inventory.fishCaught.Count);
+        fishImage.gameObject.SetActive(true);
+        fishImage.sprite = currentFish.Texture;
         Destroy(currentFishingBar);
         Destroy(currentTargetArea);
         Destroy(currentPlayerArea);
         fishHealthSlider.gameObject.SetActive(false);
         hooked = false;
-        fishHealth = 800;
         yield return new WaitForSeconds(3.0f);
+        fishImage.gameObject.SetActive(false);
+        fishImage.sprite = null;
         fishing = false;
         directions.text = "Right Click to Cast";
     }

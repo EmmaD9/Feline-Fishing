@@ -15,7 +15,7 @@ public class Inventory : MonoBehaviour
     private List<LureScriptableObject> lures;
     private Dictionary<LureScriptableObject, bool> luresBought = new Dictionary<LureScriptableObject, bool>();
 
-    private List<FishClass> fishCaught = new List<FishClass>();
+    public List<FishClass> fishCaught = new List<FishClass>();
 
     private float money;
 

@@ -334,6 +334,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7b152ad644c06d74f96a51e7f39b144c, type: 2}
   - {fileID: 11400000, guid: 0478a0478d92b394a94d0c85b72d9984, type: 2}
   - {fileID: 11400000, guid: d2d533f5aee72e242bd61de5f3818669, type: 2}
+  possibleFish: []
 --- !u!4 &174977209
 Transform:
   m_ObjectHideFlags: 0
@@ -1257,9 +1258,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 800
+  m_MaxValue: 1400
   m_WholeNumbers: 1
-  m_Value: 800
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1407,7 +1408,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 861970731}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eb73644ca3a208147b59f7c3acf3366b, type: 3}
   m_Name: 
@@ -1429,6 +1430,13 @@ MonoBehaviour:
   playerArea: {fileID: 2258328996703398648, guid: 0b24f9ac7983211428bb2de1e3da0b23, type: 3}
   directions: {fileID: 369342661}
   fishHealthSlider: {fileID: 758309887}
+  pinkFish: {fileID: 11400000, guid: 99775d281f13b534bbc6f558808cf24f, type: 2}
+  minnow: {fileID: 11400000, guid: 74872b596d046a84290b256a5905e2b4, type: 2}
+  bluefinTuna: {fileID: 11400000, guid: ff80f189879683e4f92d31fd6f8a83fc, type: 2}
+  sockeyeSalmon: {fileID: 11400000, guid: 568239acf9011614d845ec31cdc65a34, type: 2}
+  rainbowTrout: {fileID: 11400000, guid: 253ebf69c69163f4e934fc40e47ac4d1, type: 2}
+  fishImage: {fileID: 2037264639}
+  inventory: {fileID: 174977208}
 --- !u!1 &905766072
 GameObject:
   m_ObjectHideFlags: 0
@@ -1612,6 +1620,7 @@ RectTransform:
   - {fileID: 2013878611}
   - {fileID: 758309886}
   - {fileID: 369342660}
+  - {fileID: 2037264638}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -3622,6 +3631,81 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2013878610}
+  m_CullTransparentMesh: 1
+--- !u!1 &2037264637
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2037264638}
+  - component: {fileID: 2037264640}
+  - component: {fileID: 2037264639}
+  m_Layer: 5
+  m_Name: FishCaught
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2037264638
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2037264637}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 3.13, y: 1.53, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 986420584}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -298.58, y: -111.08}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2037264639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2037264637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &2037264640
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2037264637}
   m_CullTransparentMesh: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
