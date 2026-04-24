@@ -37,7 +37,7 @@ public class FishClass
     {
         this.name = name;
         length = Random.Range(minLength, maxLength);
-        weight = length * length * length;
+        weight = 3 * length;
         health = weight * 2;
         sellValue = sellPricePerLB * weight;
         this.fishSprite = fishSprite;
