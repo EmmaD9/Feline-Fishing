@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcc6c65133b0b514daeeae1c3fe94c2f, type: 3}
   m_Name: TestLure
   m_EditorClassIdentifier: Assembly-CSharp::LureScriptableObject
-  lureName: Test Lure
+  lureName: Double Hook
   fishAttracted: 
-  cost: 0
-  texture: {fileID: 0}
+  cost: 100
+  sprite: {fileID: -7802308295942256650, guid: cef684a36a0edf3469ba494583e55ede, type: 3}

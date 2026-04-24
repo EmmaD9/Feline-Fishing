@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcc6c65133b0b514daeeae1c3fe94c2f, type: 3}
   m_Name: TestLure 2
   m_EditorClassIdentifier: Assembly-CSharp::LureScriptableObject
-  lureName: Test Lure 3
+  lureName: Mr Wiggler
   fishAttracted: 
-  cost: 0
-  texture: {fileID: 0}
+  cost: 200
+  sprite: {fileID: -3291974981422383351, guid: cef684a36a0edf3469ba494583e55ede, type: 3}

@@ -15,4 +15,4 @@ MonoBehaviour:
   rodName: Test Rod 1
   power: 0
   cost: 0
-  texture: {fileID: 0}
+  texture: {fileID: -7802308295942256650, guid: cef684a36a0edf3469ba494583e55ede, type: 3}
