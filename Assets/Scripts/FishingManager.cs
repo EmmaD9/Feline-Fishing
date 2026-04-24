@@ -20,7 +20,9 @@ public class FishingManager : MonoBehaviour
     private GameObject currentTargetArea;
     private GameObject currentPlayerArea;
 
+    [SerializeField]
     private float barMovement;
+    [SerializeField]
     private float playerMovement;
 
     public static int fishHealth;
@@ -49,8 +51,8 @@ public class FishingManager : MonoBehaviour
         targetArea.transform.position = new Vector3(-4.22f, -0.08f, 0);
         fishingBar.transform.position = new Vector3(-4.22f, -0.29f, 0);
         playerArea.transform.position = new Vector3(-4.22f, -0.31f, 0);
-        barMovement = 0.005f;
-        playerMovement = 0.01f;
+        //barMovement = 0.005f;
+        //playerMovement = 0.01f;
         fishHealthSlider.gameObject.SetActive(false);
         fishImage.gameObject.SetActive(false);
         directions.text = "Right Click to Cast";
@@ -88,7 +90,7 @@ public class FishingManager : MonoBehaviour
             }
             else
             {
-                currentPlayerArea.transform.position -= new Vector3(0, playerMovement, 0);
+                currentPlayerArea.transform.position -= new Vector3(0, (float)(playerMovement / 1.5), 0);
                 if (currentPlayerArea.transform.position.y <= -3.4)
                 {
                     currentPlayerArea.transform.position = new Vector3(currentPlayerArea.transform.position.x, -3.4f, 0);
